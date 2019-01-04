@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 轮播图预览 -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+    html,body,div,ul,ol,p{margin: 0;padding: 0} 
+   html,body,#app{height: 100%;width: 100%;}
+  .show{height:400px;width:100%;margin:0 auto;}
+  </style>
+</head>
+
+<body>
+  <div id='app'>
+    <template>
+      <div class="show">
+        <img style="height:100%;width:100%" :src="isImgSrc" alt="">
+      </div>
+      <el-carousel :interval="4000" type="card" height="200px" v-on:change='getImgUrl'>
+        <el-carousel-item v-for="item in imgSrc_list" :key="item">
+         <img style="height:100%;width:100%"  :src="item" alt="">
+        </el-carousel-item>
+      </el-carousel>
+    </template>
+  </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      imgSrc_list:['./img/bg-img-01.jpg','./img/bg-img-02.jpg','./img/bg-img-03.jpg','./img/bg-img-04.jpg'], //图片列表
+      isImgSrc:'0',//当前显示的图片
+    },
+    methods:{
+      getImgUrl(e){
+       this.isImgSrc=this.imgSrc_list[e]
+      }
+    }
+  })
+</script>
+
+</html>
